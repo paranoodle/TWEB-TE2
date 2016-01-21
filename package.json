@@ -2,7 +2,9 @@
   "name": "tweb-te2",
   "version": "0.0.1",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "angular": "^1.4.9",
     "angular-chart.js": "^0.8.8",
