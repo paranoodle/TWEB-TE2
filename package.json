@@ -37,6 +37,7 @@
     "bower": "^1.7.2",
     "github-api": "^0.10.7",
     "karma": "^0.13.19",
+    "node": "0.0.0",
     "phantomjs": "^1.9.19"
   },
   "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.15.1.",
@@ -47,7 +48,7 @@
   },
   "scripts": {
     "postinstall": "bower cache clean && bower install",
-    "start": "node app.js"
+    "start": "node scripts/app.js"
   },
   "repository": {
     "type": "git",
