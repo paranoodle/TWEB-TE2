@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "angular": "^1.4.9",
+    "bower": "^1.7.2",
     "github-api": "^0.10.7",
     "karma": "^0.13.19",
     "phantomjs": "^1.9.19"
@@ -45,7 +46,7 @@
     "test": "test"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower cache clean && bower install",
     "start": "node app.js"
   },
   "repository": {
