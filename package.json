@@ -37,5 +37,26 @@
     "github-api": "^0.10.7",
     "karma": "^0.13.19",
     "phantomjs": "^1.9.19"
-  }
+  },
+  "description": "This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular) version 0.15.1.",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paranoodle/TWEB-TE2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paranoodle/TWEB-TE2/issues"
+  },
+  "homepage": "https://github.com/paranoodle/TWEB-TE2#readme"
 }
