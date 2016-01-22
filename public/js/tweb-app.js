@@ -4,7 +4,7 @@ app.controller("GitHubController", function($scope) {
   $scope.title = "Please enter a username below";
   
   var github = new Github({
-    token: "",
+    token: "584055e9a726008c399c6119d6b4a72e8b4147dd",
     auth: "oauth"
   });
   
