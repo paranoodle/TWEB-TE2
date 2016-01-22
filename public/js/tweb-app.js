@@ -1,16 +1,17 @@
 var app = angular.module("twebApp", ['chart.js']);
 
 app.controller("GitHubController", function($scope) {
+  $scope.show = false
   $scope.title = "Please enter a username below";
   
   var github = new Github({
-    token: "",
+    token: "199455c3dd5f97e1ee599e202a41880602a683cb",
     auth: "oauth"
   });
   
   $scope.on_user = function(username) {
+    $scope.show = false
     $scope.title = "Viewing the statistics of user " + username
-    $scope.sub = "(according to their public repos)"
     
     var user = github.getUser();
     
@@ -24,6 +25,7 @@ app.controller("GitHubController", function($scope) {
     });
     
     user.userRepos(username, function(err, repos) {
+      
       if (err) {
         console.log("Error retrieving repos");
         return;
@@ -74,29 +76,24 @@ app.controller("GitHubController", function($scope) {
       
       $scope.max_issues = {}
       var max_issues_val = Math.max.apply(Math, repos.map(function(r){return r.open_issues_count}));
-      console.log(max_issues_val);
       if (max_issues_val == 0) {
         $scope.max_issues.text = "???"
         $scope.max_issues.url = ""
         $scope.max_issues.url_text = ""
       } else {
         var max_issues_obj = repos.find(function(o){return o.open_issues_count == max_issues_val});
-        console.log(max_issues_obj);
         
         $scope.max_issues.text = max_issues_obj.name + " - " + max_issues_val + " open issues"
         $scope.max_issues.url = max_issues_obj.html_url
         $scope.max_issues.url_text = "Go to " + max_issues_obj.name
       }
       
-      $scope.stats = true
-      
       $scope.data = {}
-      $scope.data.title = "How do your repo sizes compare?"
       $scope.data.sizes = repos.map(function(r){return r.size});
       $scope.data.labels = repos.map(function(r){return r.name});
-      $scope.data.show = true
       
-      $scope.repos = repos;
+      $scope.show = true;
+      
       $scope.$apply();
     });
   }

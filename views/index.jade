@@ -22,20 +22,25 @@ html(lang='en', ng-app="twebApp")
       controller(ng-controller="GitHubController")
         div.page-wrapper(style="padding:20px")
           div.row
-            div.col-lg-12
-              div.page-header(style="float: left")
+            div.col-lg-2
+            div.col-lg-8
+              div.page-header(ng-show="show", style="float: left")
                 img(src="{{user.avatar_url}}", height="90", width="90")
               div.page-header(style="float: left")
                 h1 &nbsp; {{title}}
-                &nbsp;&nbsp;&nbsp;&nbsp; {{sub}}
+                div(ng-show="show")
+                  &nbsp;&nbsp;&nbsp;&nbsp; (according to their public repos)
           div.row
-            div.input-group.custom-search.form(style="padding:15px;width:300px")
-              input.form-control(ng-model="username", type="text", placeholder="Username?")
-              span.input-group-btn
-                button.btn.btn-default(ng-click="on_user(username)", type="button")
-                  i.fa.fa-search
-          div.row(ng-show="stats")
-            div.col-lg-3.col-md-6
+            div.col-lg-3
+            div.col-lg-6
+              div.input-group.custom-search.form(style="padding:15px")
+                input.form-control(ng-model="username", type="text", placeholder="Username?")
+                span.input-group-btn
+                  button.btn.btn-default(ng-click="on_user(username)", type="button")
+                    i.fa.fa-search
+          div.row(ng-show="show")
+            div.col-lg-2
+            div.col-lg-4.col-md-6
               div.panel.panel-primary
                 div.panel-heading
                   div.row
@@ -48,7 +53,7 @@ html(lang='en', ng-app="twebApp")
                     span.pull-right
                       i.fa.fa-arrow-circle-right
                     div.clearfix
-            div.col-lg-3.col-md-6
+            div.col-lg-4.col-md-6
               div.panel.panel-green
                 div.panel-heading
                   div.row
@@ -61,12 +66,14 @@ html(lang='en', ng-app="twebApp")
                     span.pull-right
                       i.fa.fa-arrow-circle-right
                     div.clearfix
-            div.col-lg-3.col-md-6
+          div.row(ng-show="show")
+            div.col-lg-2
+            div.col-lg-4.col-md-6
               div.panel.panel-yellow
                 div.panel-heading
                   div.row
                     div.col-xs-12.text-right
-                      div.huge Most Recently Updated
+                      div.huge Most Recent Update
                       div {{most_recent.text}}
                 a(href="{{most_recent.url}}")
                   div.panel-footer
@@ -74,7 +81,7 @@ html(lang='en', ng-app="twebApp")
                     span.pull-right
                       i.fa.fa-arrow-circle-right
                     div.clearfix
-            div.col-lg-3.col-md-6
+            div.col-lg-4.col-md-6
               div.panel.panel-red
                 div.panel-heading
                   div.row
@@ -87,14 +94,15 @@ html(lang='en', ng-app="twebApp")
                     span.pull-right
                       i.fa.fa-arrow-circle-right
                     div.clearfix
-          div.row(ng-show="data")
+          div.row(ng-if="show")
+            div.col-lg-2
             div.col-lg-8
               div.panel.panel-default
                 div.panel-heading
                   i.fa.fa-bar-chart-o.fa-fw
-                  {{data.title}}
-                div.panel-body
-                  canvas(id="repo_sizes", class="chart chart-doughnut", chart-data="data.sizes", chart-labels="data.labels")
+                  &nbsp;How do your repo sizes compare?
+                div.panel-body(id="chart-container")
+                  canvas.chart.chart-doughnut(id="chart", chart-data="data.sizes", chart-labels="data.labels")
                   
                   
   script(src='/sb-admin-2/bower_components/jquery/dist/jquery.min.js')
