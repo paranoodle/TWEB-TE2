@@ -4,7 +4,7 @@ app.controller("GitHubController", function($scope) {
   $scope.title = "Please enter a username below";
   
   var github = new Github({
-    token: "584055e9a726008c399c6119d6b4a72e8b4147dd",
+    token: "",
     auth: "oauth"
   });
   
@@ -28,8 +28,6 @@ app.controller("GitHubController", function($scope) {
         console.log("Error retrieving repos");
         return;
       }
-      
-      console.log(repos[0]);
       
       $scope.max_fork = {}
       var max_fork_val = Math.max.apply(Math, repos.map(function(r){return r.forks_count}));
@@ -90,10 +88,13 @@ app.controller("GitHubController", function($scope) {
         $scope.max_issues.url_text = "Go to " + max_issues_obj.name
       }
       
+      $scope.stats = true
+      
       $scope.data = {}
       $scope.data.title = "How do your repo sizes compare?"
       $scope.data.sizes = repos.map(function(r){return r.size});
       $scope.data.labels = repos.map(function(r){return r.name});
+      $scope.data.show = true
       
       $scope.repos = repos;
       $scope.$apply();

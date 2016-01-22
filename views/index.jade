@@ -24,7 +24,7 @@ html(lang='en', ng-app="twebApp")
           div.row
             div.col-lg-12
               div.page-header(style="float: left")
-                img(src="{{user.avatar_url}}", height="100", width="100")
+                img(src="{{user.avatar_url}}", height="90", width="90")
               div.page-header(style="float: left")
                 h1 &nbsp; {{title}}
                 &nbsp;&nbsp;&nbsp;&nbsp; {{sub}}
@@ -34,6 +34,7 @@ html(lang='en', ng-app="twebApp")
               span.input-group-btn
                 button.btn.btn-default(ng-click="on_user(username)", type="button")
                   i.fa.fa-search
+          div.row(ng-show="stats")
             div.col-lg-3.col-md-6
               div.panel.panel-primary
                 div.panel-heading
@@ -86,7 +87,7 @@ html(lang='en', ng-app="twebApp")
                     span.pull-right
                       i.fa.fa-arrow-circle-right
                     div.clearfix
-          div.row
+          div.row(ng-show="data")
             div.col-lg-8
               div.panel.panel-default
                 div.panel-heading
