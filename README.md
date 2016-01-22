@@ -41,7 +41,24 @@ Opening the heroku app leads to a simple landing page asking for a username:
 
 [![](images/landing.png)](images/landing.png)
 
-After having entered one, the page displays this user's most forked, watched, recently updated, and issue-prone public repositories. This is done via simple array manipulations involving maps:
+After having entered one, the page displays this user's most forked, watched, recently updated, and issue-prone public repositories. Since we use a wrapper for the GitHub API, the calls are very simple:
+
+```
+var github = new Github({
+    token: "199455c3dd5f97e1ee599e202a41880602a683cb",
+    auth: "oauth"
+  });
+```
+
+We create an instance of our wrapper by using a personal access token, then use that to obtain user information, from the username we retrieved via Angular:
+
+```
+var user = github.getUser();
+user.show(username, function(err, user) { ... });
+user.userRepos(username, function(err, repos) { ... });
+```
+
+The statistics on the repositories are then done via simple array manipulations involving maps:
 
 ```
 var max_fork_val = Math.max.apply(Math, repos.map(function(r){return r.forks_count}));
@@ -50,7 +67,7 @@ var max_fork_obj = repos.find(function(o){return o.forks_count == max_fork_val})
 
 [![](images/repo_best_of.png)](images/repo_best_of.png)
 
-In order not to leave behind the less *special* repositories, the page also displays a neat little chart to let the viewer get an idea of the repositories' sizes compared to each other:
+In order not to leave behind the less *special* repositories, the page also displays a neat little chart to let the viewer get an idea of the repositories' sizes compared to each other, again using maps:
 
 [![](images/repo_sizes.png)](images/repo_sizes.png)
 
