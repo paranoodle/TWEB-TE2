@@ -38,6 +38,15 @@ html(lang='en', ng-app="twebApp")
                 span.input-group-btn
                   button.btn.btn-default(ng-click="on_user(username)", type="button")
                     i.fa.fa-search
+          div.row(ng-show="error")
+            div.col-lg-2
+            div.col-lg-8
+              div.panel.panel-red
+                div.panel-heading
+                  div.row
+                    div.col-xs-12.text-center
+                      div.huge {{error}}
+                      div.clearfix
           div.row(ng-show="show")
             div.col-lg-2
             div.col-lg-4.col-md-6
@@ -102,7 +111,7 @@ html(lang='en', ng-app="twebApp")
                   i.fa.fa-bar-chart-o.fa-fw
                   &nbsp;How do your repo sizes compare?
                 div.panel-body(id="chart-container")
-                  canvas.chart.chart-doughnut(id="chart", chart-data="data.sizes", chart-labels="data.labels")
+                  canvas.chart.chart-doughnut(id="chart", chart-data="data.sizes", chart-labels="data.labels", chart-click="on_chart")
                   
                   
   script(src='/sb-admin-2/bower_components/jquery/dist/jquery.min.js')

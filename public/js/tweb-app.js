@@ -1,23 +1,23 @@
 var app = angular.module("twebApp", ['chart.js']);
 
 app.controller("GitHubController", function($scope) {
-  $scope.show = false
   $scope.title = "Please enter a username below";
   
   var github = new Github({
     token: "199455c3dd5f97e1ee599e202a41880602a683cb",
     auth: "oauth"
   });
-  
+
   $scope.on_user = function(username) {
     $scope.show = false
+    $scope.error = false
     $scope.title = "Viewing the statistics of user " + username
     
     var user = github.getUser();
     
     user.show(username, function(err, user) {
       if (err) {
-        console.log("Error retrieving user info");
+        $scope.error = "Error retrieving GitHub user"
         return;
       }
       
@@ -27,7 +27,7 @@ app.controller("GitHubController", function($scope) {
     user.userRepos(username, function(err, repos) {
       
       if (err) {
-        console.log("Error retrieving repos");
+        $scope.error = "Error retrieving GitHub repo"
         return;
       }
       
@@ -77,7 +77,7 @@ app.controller("GitHubController", function($scope) {
       $scope.max_issues = {}
       var max_issues_val = Math.max.apply(Math, repos.map(function(r){return r.open_issues_count}));
       if (max_issues_val == 0) {
-        $scope.max_issues.text = "???"
+        $scope.max_issues.text = "None of your repos have any issues! Congrats!"
         $scope.max_issues.url = ""
         $scope.max_issues.url_text = ""
       } else {
