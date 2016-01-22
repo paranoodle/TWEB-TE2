@@ -9,7 +9,7 @@ by Eléonore d'Agostino
 
 ## Intro
 
-I decided to use the GitHub API, mainly because it was the only named I recognized out of the list (and I preferred to work with something I was more familiar with, if possible), and I didn't really have any ideas as to how to illustrate CORS well.
+I decided to use the GitHub API, mainly because it was the only API name I recognized out of the list (and I preferred to work with something I was more familiar with, if possible), and I didn't really have any ideas as to how to illustrate CORS well.
 
 ## Setting up
 
@@ -61,11 +61,11 @@ I know in theory how it works, but in practice getting a successful deployment t
 * **GitHub's spelling**  
 I spent over half an hour trying to figure out why the GitHub API wrapper was not working, before I realized that the object they use is in fact spelled "Github" and not "GitHub". Which is *wrong*.
 * **Chart.js and ng-show**  
-As it turns out, using angular-chart.js with ng-show leads to a strange yet amusing glitch where the canvas containing the chart would fail to erase the previous chart if two usernames were entered back-to-back without refreshing the page. This would cause flickering and visual glitches while hovering over the chart, as the canvas would try to apply the hover functions of both charts at the same time.
+As it turns out, using `angular-chart.js` with `ng-show` leads to a strange yet amusing glitch where the canvas containing the chart would fail to erase the previous chart if two usernames were entered back-to-back without refreshing the page. This would cause flickering and visual glitches while hovering over the chart, as the canvas would try to apply the hover functions of both charts at the same time.
 
 ## Known Issues
 
-* Not an issue so much as a... *wrong* implementation, but due to issues with getting heroku to tell me where it hid the npm components files (after downloading and installing them successfully from [`package.json`](package.json), I went for the subtle solution of pushing the entire components folder to the repository. So, *technically*, it works fine.
+* Not an issue so much as a... *wrong* implementation, but due to issues with getting heroku to tell me where it hid the npm components files (after downloading and installing them successfully from [`package.json`](package.json), I went for the subtle solution of pushing the entire components folder to the repository. So, *technically*, it works fine, but it's incorrect.
 
 ## Conclusion
 
