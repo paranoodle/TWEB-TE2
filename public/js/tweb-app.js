@@ -4,6 +4,7 @@ app.controller("GitHubController", function($scope) {
   $scope.title = "Please enter a username below";
   
   var github = new Github({
+    // this is an old token, kept as example. heroku uses a new one
     token: "199455c3dd5f97e1ee599e202a41880602a683cb",
     auth: "oauth"
   });
